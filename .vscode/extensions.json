@@ -5,6 +5,7 @@
         "ms-vscode.vscode-typescript-next",
         "dbaeumer.vscode-eslint",
         "esbenp.prettier-vscode",
-        "dunstontc.vscode-docker-syntax"
+        "dunstontc.vscode-docker-syntax",
+        "Orta.vscode-jest"
     ]
 }
