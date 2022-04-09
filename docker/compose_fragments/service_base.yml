@@ -1,0 +1,5 @@
+services: 
+  secret_service: 
+    secrets:
+    - credentials
+    - phone_number

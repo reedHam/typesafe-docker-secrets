@@ -5,12 +5,11 @@
 import 'dotenv/config';
 import fs from 'fs';
 import path from 'path';
-import type DOCKER_SECRETS from '../../generated/@types/DockerSecrets';
-
+//import type DOCKER_SECRETS from "../../src/generated/@types/DockerSecrets";
 
 const SECRETS_DIR = process.env.SECRETS_DIR || '/run/secrets';
 
-let SECRETS: { [key: string]: unknown } = {};
+let SECRETS: { [key: string]: any } = {};
 try {
     fs.existsSync(SECRETS_DIR);
     const files = fs.readdirSync(SECRETS_DIR);
@@ -24,7 +23,7 @@ try {
                 } catch (_e) {
                     // do nothing
                 }
-                return [file, data] as [string, unknown];
+                return [file, data] as [string, any];
             })
         )
     );
@@ -32,7 +31,4 @@ try {
     throw new Error(`Error loading docker secrets: ${err}`);
 }
 
-
-
-
-export default SECRETS;
+export default SECRETS //as DOCKER_SECRETS;

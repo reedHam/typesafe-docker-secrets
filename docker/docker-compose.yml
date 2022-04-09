@@ -1,3 +1,35 @@
 services:
-    node:
-      
+    dev:
+      extends:
+        file: docker/compose_fragments/service_base.yml
+        service: secret_service
+      image: main
+      build:
+        context: .
+        dockerfile: docker/node.Dockerfile
+      volumes:
+        - ./scripts:/usr/bin/app/scripts
+        - ./generated:/usr/bin/app/generated
+        - ./src:/usr/bin/app/src
+      command:
+        - node
+        - ./scripts/build/generateDockerSecretTypes.js
+
+
+
+
+    dev:
+      extends:
+        file: docker/compose_fragments/service_base.yml
+        service: secret_service
+      image: main
+      build:
+        context: .
+        dockerfile: docker/node.Dockerfile
+      volumes:
+        - ./scripts:/usr/bin/app/scripts
+        - ./src/generated:/usr/bin/app/build/generated
+      command:
+        - node
+        - ./scripts/build/generateDockerSecretTypes.js
+
