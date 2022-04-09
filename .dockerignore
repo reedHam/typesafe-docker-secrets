@@ -1,1 +1,7 @@
 .env
+node_modules
+docs
+tests
+.gitgub
+.git
+.vscode
