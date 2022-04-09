@@ -103,6 +103,6 @@ dist
 # TernJS port file
 .tern-port
 
-.docker_secret
+docker/secrets/*
 
 **/generated/*
