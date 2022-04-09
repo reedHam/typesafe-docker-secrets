@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node ./src/main.js",
     "build:prod": "yarn audit && tsc",
-    "build:docker": "docker build ."
+    "build:docker": "docker build .",
+    "generate:types": "ts-node scripts/build/generateDockerSecretTypes.ts"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,9 @@
     "dotenv": "^16.0.0"
   },
   "devDependencies": {
+    "@types/jest": "^27.4.1",
+    "ts-jest": "^27.1.4",
+    "ts-node": "^10.7.0",
     "tsc-watch": "^5.0.3",
     "typescript": "^4.6.3"
   }
