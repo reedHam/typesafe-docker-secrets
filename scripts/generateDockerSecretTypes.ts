@@ -1,9 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 
-import DOCKER_SECRETS from "../build/startup/DockerSecrets.js";
+import DOCKER_SECRETS from "../src/startup/DockerSecrets";
 
-const GENERATION_DIR = path.join(process.cwd(), 'build/generated/@types');
+const GENERATION_DIR = path.join(process.cwd(), 'generated/@types');
 
 const typeDefinitionFile = `export default interface DockerSecrets {\n${Object.entries(DOCKER_SECRETS).map(([key, secret]) => `    "${key}": ${typeof secret};\n`).join('')}}\n`;
 

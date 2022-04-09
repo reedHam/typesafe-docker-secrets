@@ -5,9 +5,9 @@
 import 'dotenv/config';
 import fs from 'fs';
 import path from 'path';
-//import type DOCKER_SECRETS from "../../src/generated/@types/DockerSecrets";
+import type DOCKER_SECRETS from "../../generated/@types/DockerSecrets";
 
-const SECRETS_DIR = process.env.SECRETS_DIR || '/run/secrets';
+const SECRETS_DIR = process.env.SECRET_TEST_DIR || '/run/secrets';
 
 let SECRETS: { [key: string]: any } = {};
 try {
@@ -31,4 +31,4 @@ try {
     throw new Error(`Error loading docker secrets: ${err}`);
 }
 
-export default SECRETS //as DOCKER_SECRETS;
+export default SECRETS as DOCKER_SECRETS;

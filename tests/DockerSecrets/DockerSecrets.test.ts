@@ -1,18 +1,15 @@
-process.env = Object.assign(process.env, {
-    SECRETS_DIR: './resources/run/secrets',
-});
+import 'dotenv/config';
+import SECRETS from '../../src/startup/DockerSecrets';
 
 test("Reads Docker Secrets", async () => {
     try {
-            const SECRETS = await import('../../src/startup/DockerSecrets');
-    console.log(SECRETS);
-    expect(SECRETS.default).toEqual({
-        "test": 8675309,
-        "test-2": "THIS_IS_THE_SECOND_SECRET"
-    });
+        expect(SECRETS).toEqual({
+            "test": 8675309,
+            "test-2": "THIS_IS_THE_SECOND_SECRET",
+            "secretObject": {"test": 123}
+        });
     } catch (e) {
         console.log(e);
         throw e;
     }
-
 });
