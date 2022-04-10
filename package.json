@@ -3,14 +3,17 @@
   "version": "1.2.0",
   "description": "",
   "main": "./src/main.js",
+  "license": "NO use",
   "type": "module",
   "scripts": {
+    "dev": "yarn start:docker-compose dev",
     "start": "node build/main.js",
-    "start:docker-compose": "yarn generate:docker-compose && docker compose --project-directory . --project-name 'node-template' -f docker/generated/docker-compose.yml up",
+    "start:dev": "yarn generate:types && tsc-watch --onSuccess 'node --enable-source-maps build/main.js'",
+    "start:docker-compose": "yarn generate:docker-compose && docker compose --project-directory . --project-name 'node-template' -f generated/docker/docker-compose.yml up --build --remove-orphans",
     "build": "yarn audit && tsc",
     "build:docker": "yarn build && docker build -f docker/node.Dockerfile -t main .",
-    "generate:types": "ts-node scripts/build/generateDockerSecretTypes.ts",
-    "generate:docker-compose": "docker compose  -f docker/docker-compose.yml -f docker/compose_fragments/version.yml -f docker/compose_fragments/secrets.yml --project-directory . config > docker/generated/docker-compose.yml",
+    "generate:types": "ts-node scripts/generateDockerSecretTypes.ts",
+    "generate:docker-compose": "docker compose  -f docker/docker-compose.yml -f docker/compose_fragments/version.yml -f docker/compose_fragments/secrets.yml --project-directory . config > generated/docker/docker-compose.yml",
     "test": "node --no-warnings --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "repository": {
@@ -25,6 +28,7 @@
     "@types/jest": "^27.4.1",
     "jest": "^27.5.1",
     "ts-jest": "^27.1.4",
+    "ts-node": "^10.7.0",
     "tsc-watch": "^5.0.3",
     "typescript": "^4.6.3"
   },
