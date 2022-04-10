@@ -1,13 +1,12 @@
 FROM node:current-alpine
 
-ENV NODE_ENV = "production"
+ENV NODE_ENV "production"
 
 WORKDIR /usr/bin/app
 
 COPY package.json ./
 COPY yarn.lock ./
-COPY ./build ./build
-
+COPY ./build ./src
 RUN yarn install --production
 
-CMD yarn start
+CMD node src/main.js

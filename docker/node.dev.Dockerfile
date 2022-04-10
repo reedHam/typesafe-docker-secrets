@@ -7,7 +7,6 @@ WORKDIR /usr/bin/app
 COPY package.json ./
 COPY yarn.lock ./
 COPY ./tsconfig.json ./tsconfig.json
-
 RUN yarn install
 
-CMD yarn start:dev
+CMD yarn generate:types && tsc-watch --onSuccess 'node --enable-source-maps build/main.js'
